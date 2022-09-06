@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-//import { toast } from 'react-toastify';
+
 import { Form, Formik } from 'formik';
 import {
   ButtonSubmit,
@@ -8,49 +8,32 @@ import {
   Input,
   Eror,
 } from './Register.styled';
-// import {
-//   useCreateContactsMutation,
-//   useGetContactsQuery,
-// } from 'redux/phoneBookApi';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 
 const Register = () => {
-  // const [createContact] = useCreateContactsMutation();
-  //const { data } = useGetContactsQuery();
+  const dispatch = useDispatch();
 
   const hendleSubmit = (values, { resetForm }) => {
-    /*     if (data.some(contact => contact.name === values.name)) {
-      toast(`${values.name} is already in contacts`);
-    } else { */
-    // createContact({
-    //   name: values.name,
-    //   email: values.email,
-    //   password: values.password,
-    // });
-    /* toast(`${values.name} added to contact`);
-    } */
+    const name = values.name;
+    const email = values.email;
+    const password = values.password;
+    dispatch(authOperations.register({ name, email, password }));
     resetForm();
   };
 
   const nameValid =
     "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
-  /*   const numberValid =
-    /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/ */ let schema =
-    yup.object().shape({
-      name: yup
-        .string()
-        .matches(
-          nameValid,
-          'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore dArtagnan'
-        )
-        .required(),
-      /*     number: yup
+
+  let schema = yup.object().shape({
+    name: yup
       .string()
       .matches(
-        numberValid,
-        'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
+        nameValid,
+        'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore dArtagnan'
       )
-      .required(), */
-    });
+      .required(),
+  });
 
   return (
     <WrapperForm>
