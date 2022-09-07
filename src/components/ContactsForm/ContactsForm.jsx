@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
 import { Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import {
   ButtonSubmit,
   TitleBlock,
@@ -8,24 +9,19 @@ import {
   Input,
   Eror,
 } from './ContactsForm.styled';
-import {
-  useCreateContactsMutation,
-  useGetContactsQuery,
-} from 'redux/phoneBookApi';
+import { contactsOperations } from 'redux/contacts';
 
-export const ContactsForm = () => {
-  const [createContact] = useCreateContactsMutation();
-  const { data } = useGetContactsQuery();
-
+export const ContactsForm = ({ onSave }) => {
+  const dispatch = useDispatch();
   const hendleSubmit = (values, { resetForm }) => {
-    if (data.some(contact => contact.name === values.name)) {
+    /*   if (data.some(contact => contact.name === values.name)) {
       toast(`${values.name} is already in contacts`);
-    } else {
-      createContact({
-        name: values.name,
-        phone: values.number,
-      });
+    } else { */
+    if (values) {
+      dispatch(contactsOperations.addContact(values));
+      onSave();
       toast(`${values.name} added to contact`);
+      return;
     }
     resetForm();
   };
