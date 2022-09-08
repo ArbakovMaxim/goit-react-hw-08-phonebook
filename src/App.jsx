@@ -4,6 +4,8 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'components/hooks';
 import { authOperations } from 'redux/auth';
+import PublicRoute from 'components/Route/PublicRoute';
+import PrivateRoute from 'components/Route/PrivateRoute';
 
 const Layout = lazy(() => import('./Layout/Layout'));
 const Home = lazy(() => import('./Pages/Home/Home'));
@@ -26,10 +28,33 @@ export const App = () => {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/contacts" element={<Contacts />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route index element={<PublicRoute component={<Home />} />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute
+                restricted
+                redirectTo="/contacts"
+                component={<Register />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute
+                restricted
+                redirectTo="/contacts"
+                component={<Login />}
+              />
+            }
+          />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
