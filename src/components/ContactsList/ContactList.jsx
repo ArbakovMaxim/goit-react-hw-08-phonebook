@@ -7,6 +7,8 @@ import {
   ContList,
   ContItem,
   BtnDeleteContact,
+  Name,
+  Number,
 } from './ContactList.styled';
 
 export const ContactsList = () => {
@@ -14,9 +16,6 @@ export const ContactsList = () => {
   const contactsList = useSelector(contactsSelectors.getVisibleContacts);
 
   const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
-
-  // const onToggleCompleted = id =>
-  //   dispatch(contactsOperations.toggleCompleted(id));
 
   return (
     <ContWrapper>
@@ -27,7 +26,8 @@ export const ContactsList = () => {
           {contactsList.map(contacts => {
             return (
               <ContItem key={contacts.id}>
-                {contacts.name}: {contacts.number}
+                <Name>{contacts.name}:</Name>
+                <Number>{contacts.number}</Number>
                 <BtnDeleteContact
                   type="button"
                   onClick={() => {

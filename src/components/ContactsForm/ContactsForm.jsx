@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import {
   ButtonSubmit,
@@ -7,6 +7,8 @@ import {
   WrapperForm,
   Input,
   Eror,
+  NameForm,
+  FormFormik,
 } from './ContactsForm.styled';
 import { contactsOperations } from 'redux/contacts';
 
@@ -48,12 +50,13 @@ export const ContactsForm = ({ onSave }) => {
 
   return (
     <WrapperForm>
+      <NameForm>Add contact</NameForm>
       <Formik
         initialValues={{ name: '', number: '' }}
         validationSchema={schema}
         onSubmit={hendleSubmit}
       >
-        <Form>
+        <FormFormik>
           <TitleBlock>Name</TitleBlock>
           <Input type="text" name="name" />
           <Eror name="name" component="div" />
@@ -61,7 +64,7 @@ export const ContactsForm = ({ onSave }) => {
           <Input type="tel" name="number" />
           <Eror name="number" component="div" />
           <ButtonSubmit type="submit">Add contact</ButtonSubmit>
-        </Form>
+        </FormFormik>
       </Formik>
     </WrapperForm>
   );
