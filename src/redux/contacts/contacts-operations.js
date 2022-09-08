@@ -7,9 +7,6 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
-  toggleCompletedRequest,
-  toggleCompletedSuccess,
-  toggleCompletedError,
   fetchContactsRequest,
   fetchContactsSuccess,
   fetchContactsError,
@@ -48,24 +45,9 @@ const deleteContact = contactId => dispatch => {
     .catch(error => dispatch(deleteContactError(error.message)));
 };
 
-// PATCH @ /tasks/:id
-const toggleCompleted =
-  ({ id, completed }) =>
-  dispatch => {
-    const update = { completed };
-
-    dispatch(toggleCompletedRequest());
-
-    axios
-      .patch(`/contacts/${id}`, update)
-      .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
-      .catch(error => dispatch(toggleCompletedError(error.message)));
-  };
-
 const todosOperations = {
   fetchContacts,
   addContact,
   deleteContact,
-  toggleCompleted,
 };
 export default todosOperations;

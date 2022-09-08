@@ -1,5 +1,4 @@
 import { createSelector } from '@reduxjs/toolkit';
-//import { changeFilter } from './contacts-actions';
 
 const getLoading = state => state.contacts.loading;
 
