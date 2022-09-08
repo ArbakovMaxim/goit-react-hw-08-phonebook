@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
   addContactRequest,
   addContactSuccess,
@@ -24,18 +25,17 @@ const fetchContacts = () => async dispatch => {
   }
 };
 
-const addContact = description => dispatch => {
-  const contact = {
-    description,
-    completed: false,
-  };
-
+const addContact = contact => dispatch => {
+  console.log(contact);
+  console.log();
   dispatch(addContactRequest());
 
   axios
-    .post('/tasks', contact)
+    .post('/contacts', contact)
     .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContactError(error.message)));
+    .then(toast(`${contact.name} added to contact`))
+    .catch(error => dispatch(addContactError(error.message)))
+    .catch(error => toast(`${error.message} added to contact`));
 };
 
 // DELETE @ /tasks/:id
@@ -43,7 +43,7 @@ const deleteContact = contactId => dispatch => {
   dispatch(deleteContactRequest());
 
   axios
-    .delete(`/tasks/${contactId}`)
+    .delete(`/contacts/${contactId}`)
     .then(() => dispatch(deleteContactSuccess(contactId)))
     .catch(error => dispatch(deleteContactError(error.message)));
 };
@@ -57,7 +57,7 @@ const toggleCompleted =
     dispatch(toggleCompletedRequest());
 
     axios
-      .patch(`/tasks/${id}`, update)
+      .patch(`/contacts/${id}`, update)
       .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
       .catch(error => dispatch(toggleCompletedError(error.message)));
   };

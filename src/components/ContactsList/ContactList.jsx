@@ -15,8 +15,8 @@ export const ContactsList = () => {
 
   const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
-  //   const onToggleCompleted = id =>
-  //     dispatch(contactsOperations.toggleCompleted(id));
+  // const onToggleCompleted = id =>
+  //   dispatch(contactsOperations.toggleCompleted(id));
 
   return (
     <ContWrapper>

@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+//import { changeFilter } from './contacts-actions';
 
 const getLoading = state => state.contacts.loading;
 
@@ -6,25 +7,20 @@ const getFilter = state => state.contacts.filter;
 
 const getAllContacts = state => state.contacts.items;
 
-const getTotalContactCount = state => {
-  const contacts = getAllContacts(state);
-  return contacts.length;
-};
-
-const getCompletedContactCount = createSelector([getAllContacts], contacts => {
-  return contacts.reduce(
-    (total, contact) => (contact.completed ? total + 1 : total),
-    0
-  );
-});
-
 const getVisibleContacts = createSelector(
   [getAllContacts, getFilter],
   (contacts, filter) => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(({ description }) =>
-      description.toLowerCase().includes(normalizedFilter)
-    );
+    // console.log(`contacn = ${contacts}`);
+    // console.log(`filter = ${filter}`);
+    // const normalizedFilter = changeFilter.toLowerCase();
+    // console.log(`contacn = ${contacts}`);
+    // console.log(`filter = ${filter}`);
+    // return contacts.filter(({ description }) =>
+    //   description.toLowerCase().includes(normalizedFilter)
+    // );
+    console.log(`contacts = ${contacts}`);
+    console.log(`filter = ${filter}`);
+    return contacts;
   }
 );
 
@@ -32,7 +28,5 @@ const contactsSelectors = {
   getLoading,
   getFilter,
   getVisibleContacts,
-  getTotalContactCount,
-  getCompletedContactCount,
 };
 export default contactsSelectors;

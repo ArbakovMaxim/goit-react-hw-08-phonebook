@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { TitleBlock } from 'components/ContactsForm/ContactsForm.styled';
-import { changeFilter, getFilter } from 'redux/phoneBookApi';
+import { changeFilter, contactsSelectors } from 'redux/contacts';
 
 let schema = yup.object().shape({
   name: yup.string().required(),
@@ -9,16 +9,17 @@ let schema = yup.object().shape({
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const value = useSelector(contactsSelectors.getFilter);
 
   const onChangeFilter = event => {
     dispatch(changeFilter(event.target.value));
   };
+
   return (
     <div>
       <TitleBlock>Find contacts by name</TitleBlock>
       <input
-        value={filter}
+        value={value}
         type="text"
         name="filter"
         pattern={schema}

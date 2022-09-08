@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { toast } from 'react-toastify';
 import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import {
@@ -20,7 +19,6 @@ export const ContactsForm = ({ onSave }) => {
     if (values) {
       dispatch(contactsOperations.addContact(values));
       onSave();
-      toast(`${values.name} added to contact`);
       return;
     }
     resetForm();

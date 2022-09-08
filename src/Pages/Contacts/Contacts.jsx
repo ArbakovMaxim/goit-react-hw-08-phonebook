@@ -1,5 +1,6 @@
 import { ContactsForm } from 'components/ContactsForm/ContactsForm';
 import ContactsList from 'components/ContactsList/ContactList';
+import { Filter } from 'components/Filter/Filter';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../../components/Modal/Modal';
@@ -32,9 +33,9 @@ export default function Contacts() {
   return (
     <>
       <div style={barStyles}>{isLoadingContacts && <h1>Загружаем...</h1>}</div>
+      <Filter />
       <ContactsList />
       <button onClick={toggleModal} aria-label="New contact">
-        {' '}
         add contact
       </button>
       {isModalOpen && (
