@@ -8,11 +8,11 @@ import PublicRoute from 'components/Route/PublicRoute';
 import PrivateRoute from 'components/Route/PrivateRoute';
 
 const Layout = lazy(() => import('./layout/Layout'));
-const Home = lazy(() => import('./Pages/Home/Home'));
-const Contacts = lazy(() => import('./Pages/Contacts/Contacts'));
+const Home = lazy(() => import('./dscsdvs/Home/Home'));
+const Contacts = lazy(() => import('./dscsdvs/Contacts/Contacts'));
 const Register = lazy(() => import('./components/Register/Register'));
 const Login = lazy(() => import('./components/Login/Login'));
-const PageNotFound = lazy(() => import('./Pages/PageNotFound/PageNotFound'));
+const PageNotFound = lazy(() => import('./dscsdvs/PageNotFound/PageNotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
