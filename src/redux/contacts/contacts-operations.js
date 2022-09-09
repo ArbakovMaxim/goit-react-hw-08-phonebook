@@ -22,21 +22,28 @@ const fetchContacts = () => async dispatch => {
   }
 };
 
-const addContact = contact => dispatch => {
+const addContact = contact => async dispatch => {
   dispatch(addContactRequest());
-
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
-    .then(toast(`${contact.name} added to contact`))
-    .catch(error => dispatch(addContactError(error.message)))
-    .catch(error => toast(`${error.message} added to contact`));
+  try {
+    const { data } = await axios.post('/contacts', contact);
+    dispatch(addContactSuccess(data));
+    toast.success(`${contact.name} added to contact`);
+  } catch (error) {
+    dispatch(addContactError(error.message));
+    toast.error(`${error.message} added to contact`);
+  }
 };
 
 // DELETE @ /tasks/:id
 const deleteContact = contactId => dispatch => {
   dispatch(deleteContactRequest());
-
+  //   try {
+  //     const { data } = await axios.delete(`/contacts/${contactId}`);
+  //     dispatch(deleteContactSuccess(data));
+  //   } catch (error) {
+  //     dispatch(deleteContactError(error.message));
+  //   }
+  // };
   axios
     .delete(`/contacts/${contactId}`)
     .then(() => dispatch(deleteContactSuccess(contactId)))

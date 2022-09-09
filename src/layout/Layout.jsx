@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { GlobalStyle } from './GlobalStyle';
+import { GlobalStyle } from '../style/GlobalStyle';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppBar } from './AppBar/AppBar';

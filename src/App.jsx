@@ -7,7 +7,7 @@ import { authOperations } from 'redux/auth';
 import PublicRoute from 'components/Route/PublicRoute';
 import PrivateRoute from 'components/Route/PrivateRoute';
 
-const Layout = lazy(() => import('./lkjbkj/Layout'));
+const Layout = lazy(() => import('./layout/Layout'));
 const Home = lazy(() => import('./Pages/Home/Home'));
 const Contacts = lazy(() => import('./Pages/Contacts/Contacts'));
 const Register = lazy(() => import('./components/Register/Register'));
