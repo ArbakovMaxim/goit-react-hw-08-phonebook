@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-//import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { contactsOperations, contactsSelectors } from 'redux/contacts';
 
 import {
@@ -16,7 +16,10 @@ export const ContactsList = () => {
   const dispatch = useDispatch();
   const contactsList = useSelector(contactsSelectors.getVisibleContacts);
 
-  const onDeleteContact = id => dispatch(contactsOperations.deleteContact(id));
+  const onDeleteContact = (id, name) => {
+    dispatch(contactsOperations.deleteContact(id));
+    toast(`${name} delete`);
+  };
 
   return (
     <ContWrapper>
