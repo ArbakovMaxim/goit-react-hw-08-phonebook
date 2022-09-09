@@ -50,7 +50,7 @@ const Register = () => {
           <Input type="email" name="email" />
           <Eror name="email" component="div" />
           <TitleBlock>Password</TitleBlock>
-          <Input type="password" name="password" />
+          <Input type="password" name="password" minLength="7" />
           <Eror name="password" component="div" />
           <ButtonSubmit type="submit">Register</ButtonSubmit>
         </Form>
