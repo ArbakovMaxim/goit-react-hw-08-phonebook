@@ -33,7 +33,7 @@ export default function Contacts() {
 
   return (
     <>
-      <div style={barStyles}>{isLoadingContacts && <h1>Загружаем...</h1>}</div>
+      <div style={barStyles}>{isLoadingContacts && <h1>Loading...</h1>}</div>
       <Wraper>
         <Filter />
         <BtnAddContact onClick={toggleModal} aria-label="New contact">

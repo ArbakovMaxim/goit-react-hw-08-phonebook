@@ -23,8 +23,6 @@ const fetchContacts = () => async dispatch => {
 };
 
 const addContact = contact => dispatch => {
-  console.log(contact);
-  console.log();
   dispatch(addContactRequest());
 
   axios

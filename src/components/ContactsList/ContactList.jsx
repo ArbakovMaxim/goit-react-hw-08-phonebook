@@ -9,6 +9,7 @@ import {
   BtnDeleteContact,
   Name,
   Number,
+  NoContact,
 } from './ContactList.styled';
 
 export const ContactsList = () => {
@@ -20,7 +21,7 @@ export const ContactsList = () => {
   return (
     <ContWrapper>
       {contactsList.length === 0 ? (
-        <p>не чего нет</p>
+        <NoContact>You have no contacts. Please add.</NoContact>
       ) : (
         <ContList>
           {contactsList.map(contacts => {

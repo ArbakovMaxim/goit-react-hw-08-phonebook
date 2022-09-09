@@ -56,3 +56,10 @@ export const Number = styled.p`
   font-size: 15px;
   margin-left: 15px;
 `;
+
+export const NoContact = styled.p`
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 200px;
+`;
