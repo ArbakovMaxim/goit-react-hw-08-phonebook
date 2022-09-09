@@ -9,17 +9,13 @@ const getAllContacts = state => state.contacts.items;
 const getVisibleContacts = createSelector(
   [getAllContacts, getFilter],
   (contacts, filter) => {
-    // console.log(`contacn = ${contacts}`);
-    // console.log(`filter = ${filter}`);
-    // const normalizedFilter = changeFilter.toLowerCase();
-    // console.log(`contacn = ${contacts}`);
-    // console.log(`filter = ${filter}`);
-    // return contacts.filter(({ description }) =>
-    //   description.toLowerCase().includes(normalizedFilter)
-    // );
+    const normalizedFilter = filter.toLowerCase();
     console.log(`contacts = ${contacts}`);
     console.log(`filter = ${filter}`);
-    return contacts;
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(normalizedFilter)
+    );
+    //return contacts;
   }
 );
 
