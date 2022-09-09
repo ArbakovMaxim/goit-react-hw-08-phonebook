@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import book from '../../images/book.jpg';
 
 export const ContWrapper = styled.div``;
 
@@ -11,7 +12,9 @@ export const ContItem = styled.li`
 `;
 
 export const BtnAddContact = styled.button`
-  margin-left: 200px;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
   font-family: 'Montserrat';
   font-size: 21px;
   font-weight: bold;
@@ -30,4 +33,18 @@ export const BtnAddContact = styled.button`
 
 export const Wraper = styled.div`
   display: flex;
+`;
+
+export const WraperLoading = styled.div`
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20;
+`;
+
+export const WraperPage = styled.div`
+  background-image: url(${book});
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90vh;
+  width: 100%;
 `;

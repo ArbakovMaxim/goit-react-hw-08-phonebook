@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import { TitleBlock } from 'components/ContactsForm/ContactsForm.styled';
+import { Wraper } from './Filter.styled';
 
 let schema = yup.object().shape({
   name: yup.string().required(),
@@ -7,7 +8,7 @@ let schema = yup.object().shape({
 
 export const Filter = ({ onChangeFilter, value }) => {
   return (
-    <div>
+    <Wraper>
       <TitleBlock>Find contacts by name</TitleBlock>
       <input
         value={value}
@@ -17,6 +18,6 @@ export const Filter = ({ onChangeFilter, value }) => {
         title="only sting"
         onChange={onChangeFilter}
       />
-    </div>
+    </Wraper>
   );
 };

@@ -9,13 +9,12 @@ import {
   contactsOperations,
   contactsSelectors,
 } from '../../redux/contacts/index';
-import { BtnAddContact, Wraper } from './Contacts.styled';
-
-const barStyles = {
-  display: 'flex',
-  alignItems: 'flex-end',
-  marginBottom: 20,
-};
+import {
+  BtnAddContact,
+  Wraper,
+  WraperLoading,
+  WraperPage,
+} from './Contacts.styled';
 
 export default function Contacts() {
   const { items, filter } = useSelector(contactsSelectors.getContactsAll);
@@ -35,20 +34,20 @@ export default function Contacts() {
   };
 
   return (
-    <>
-      <div style={barStyles}>{isLoadingContacts && <h1>Loading...</h1>}</div>
+    <WraperPage>
+      <WraperLoading>{isLoadingContacts && <h1>Loading...</h1>}</WraperLoading>
       <Wraper>
         <Filter Value={filter} onChangeFilter={onfilterContact} />
-        <BtnAddContact onClick={toggleModal} aria-label="New contact">
-          Add contact
-        </BtnAddContact>
       </Wraper>
       <ContactsList items={getVisibleContacts()} />
+      <BtnAddContact onClick={toggleModal} aria-label="New contact">
+        Add contact
+      </BtnAddContact>
       {isModalOpen && (
         <Modal onClose={toggleModal}>
           <ContactsForm onSave={toggleModal} items={getVisibleContacts()} />
         </Modal>
       )}
-    </>
+    </WraperPage>
   );
 }

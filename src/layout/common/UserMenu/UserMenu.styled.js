@@ -7,6 +7,7 @@ export const Img = styled.img`
 export const WraperUserMenu = styled.div`
   display: flex;
   align-items: center;
+  margin-right: 12px;
 `;
 export const BtnLogOut = styled.button`
   border-radius: 50%;

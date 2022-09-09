@@ -12,6 +12,7 @@ export const ContList = styled.ul`
 export const ContItem = styled.li`
   background-image: url(${card});
   background-size: cover;
+  border-radius: 10px;
   height: 100px;
   width: 220px;
   background-color: green;
