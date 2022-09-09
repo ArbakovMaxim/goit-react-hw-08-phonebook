@@ -16,7 +16,7 @@ export const Content = styled.div`
   display: block;
   margin-bottom: 80px;
   width: 500px;
-  height: 360px;
+  height: 460px;
   background: #fff;
   border-radius: 5px;
   overflow: hidden;

@@ -1,6 +1,5 @@
 import * as yup from 'yup';
-import { TitleBlock } from 'components/ContactsForm/ContactsForm.styled';
-import { Wraper } from './Filter.styled';
+import { TitleBlock, Wraper } from './Filter.styled';
 
 let schema = yup.object().shape({
   name: yup.string().required(),

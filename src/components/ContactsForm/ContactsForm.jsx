@@ -3,12 +3,13 @@ import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import {
   ButtonSubmit,
-  TitleBlock,
   WrapperForm,
   Input,
   Eror,
   NameForm,
   FormFormik,
+  TitleBlock1,
+  TitleBlock2,
 } from './ContactsForm.styled';
 import { toast } from 'react-toastify';
 import { contactsOperations } from 'redux/contacts';
@@ -30,12 +31,12 @@ export const ContactsForm = ({ onSave, items }) => {
   const nameValid =
     "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
   const numberValid =
-    /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   let schema = yup.object().shape({
     name: yup
       .string()
-      .max(15)
+      .max(18)
       .min(5)
       .matches(
         nameValid,
@@ -44,7 +45,7 @@ export const ContactsForm = ({ onSave, items }) => {
       .required(),
     number: yup
       .string()
-      .max(12)
+      .max(15)
       .min(7)
       .matches(
         numberValid,
@@ -62,10 +63,10 @@ export const ContactsForm = ({ onSave, items }) => {
         onSubmit={hendleSubmit}
       >
         <FormFormik>
-          <TitleBlock>Name</TitleBlock>
+          <TitleBlock1>Name</TitleBlock1>
           <Input type="text" name="name" />
           <Eror name="name" component="div" />
-          <TitleBlock>Number</TitleBlock>
+          <TitleBlock2>Number</TitleBlock2>
           <Input type="tel" name="number" />
           <Eror name="number" component="div" />
           <ButtonSubmit type="submit">Add contact</ButtonSubmit>

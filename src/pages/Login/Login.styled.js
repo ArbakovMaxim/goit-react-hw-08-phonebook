@@ -3,6 +3,7 @@ import { Field, ErrorMessage } from 'formik';
 
 export const ButtonSubmit = styled.button`
   background-color: #1161ed;
+  cursor: pointer;
   color: #fff;
   width: 20%;
   padding: 10px 20px;

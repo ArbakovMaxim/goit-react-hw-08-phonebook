@@ -6,24 +6,36 @@ export const ButtonSubmit = styled.button`
   display: block;
   margin-top: 20px;
   cursor: pointer;
+  margin-left: 2em;
 `;
 
-export const TitleBlock = styled.h2`
-  margin: 0;
+export const TitleBlock1 = styled.h2`
+  margin-left: 2em;
+  margin-top: 2em;
   margin-bottom: 5px;
   font-size: ${p => p.theme.fontsSizes[3]}px;
 `;
 
-export const WrapperForm = styled.div``;
+export const TitleBlock2 = styled.h2`
+  margin-left: 2em;
+  margin-bottom: 5px;
+  font-size: ${p => p.theme.fontsSizes[3]}px;
+`;
+
+export const WrapperForm = styled.div`
+  height: 460px;
+`;
 
 export const Input = styled(Field)`
   margin-bottom: 20px;
+  margin-left: 2em;
 `;
 
 export const Eror = styled(ErrorMessage)`
   color: ${p => p.theme.colors.text};
   font-size: ${p => p.theme.fontsSizes[0]}px;
   width: 180px;
+  margin-left: 2em;
 `;
 
 export const NameForm = styled.h2`
@@ -34,8 +46,8 @@ export const NameForm = styled.h2`
 `;
 
 export const FormFormik = styled(Form)`
-  width: 100%;
-  padding: 2em;
+  width: 500px;
+  height: 100%;
   position: relative;
   border-radius: 3px;
   border: 1px solid #b12816;
