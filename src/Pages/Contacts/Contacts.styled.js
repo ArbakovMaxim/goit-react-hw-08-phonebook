@@ -10,12 +10,13 @@ export const ContItem = styled.li`
   }
 `;
 
-export const BtnDeleteContact = styled.button`
+export const BtnAddContact = styled.button`
   margin-left: 200px;
   font-family: 'Montserrat';
   font-size: 21px;
   font-weight: bold;
   color: #ecd600 !important;
+  cursor: pointer;
   padding: 4px 5px;
   border-radius: 21px;
   border: 2px groove #5246f3;

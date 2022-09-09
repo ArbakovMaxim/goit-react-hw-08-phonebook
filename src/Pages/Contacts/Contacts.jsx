@@ -13,7 +13,7 @@ import {
   contactsOperations,
   contactsSelectors,
 } from '../../redux/contacts/index';
-import { BtnDeleteContact, Wraper } from './Contacts.styled';
+import { BtnAddContact, Wraper } from './Contacts.styled';
 
 const barStyles = {
   display: 'flex',
@@ -36,9 +36,9 @@ export default function Contacts() {
       <div style={barStyles}>{isLoadingContacts && <h1>Загружаем...</h1>}</div>
       <Wraper>
         <Filter />
-        <BtnDeleteContact onClick={toggleModal} aria-label="New contact">
+        <BtnAddContact onClick={toggleModal} aria-label="New contact">
           Add contact
-        </BtnDeleteContact>
+        </BtnAddContact>
       </Wraper>
       <ContactsList />
       {isModalOpen && (

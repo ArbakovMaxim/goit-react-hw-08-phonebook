@@ -32,6 +32,7 @@ export const BtnDeleteContact = styled.button`
   font-size: 15px;
   font-weight: bold;
   color: #ffffff !important;
+  cursor: pointer;
   border-radius: 21px;
   border: 2px dashed #f3c846;
   background: #ab8179;

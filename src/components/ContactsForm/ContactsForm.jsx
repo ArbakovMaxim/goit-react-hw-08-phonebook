@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   ButtonSubmit,
   TitleBlock,
@@ -10,15 +10,16 @@ import {
   NameForm,
   FormFormik,
 } from './ContactsForm.styled';
-import { contactsOperations } from 'redux/contacts';
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
+import { toast } from 'react-toastify';
 
 export const ContactsForm = ({ onSave }) => {
+  const contactsList = useSelector(contactsSelectors.getVisibleContacts);
   const dispatch = useDispatch();
   const hendleSubmit = (values, { resetForm }) => {
-    /*   if (data.some(contact => contact.name === values.name)) {
+    if (contactsList.some(contact => contact.name === values.name)) {
       toast(`${values.name} is already in contacts`);
-    } else { */
-    if (values) {
+    } else {
       dispatch(contactsOperations.addContact(values));
       onSave();
       return;
@@ -34,6 +35,8 @@ export const ContactsForm = ({ onSave }) => {
   let schema = yup.object().shape({
     name: yup
       .string()
+      .max(15)
+      .min(5)
       .matches(
         nameValid,
         'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore dArtagnan'
@@ -41,6 +44,8 @@ export const ContactsForm = ({ onSave }) => {
       .required(),
     number: yup
       .string()
+      .max(12)
+      .min(7)
       .matches(
         numberValid,
         'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'

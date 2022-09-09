@@ -5,6 +5,7 @@ import { Form } from 'formik';
 export const ButtonSubmit = styled.button`
   display: block;
   margin-top: 20px;
+  cursor: pointer;
 `;
 
 export const TitleBlock = styled.h2`
@@ -13,18 +14,14 @@ export const TitleBlock = styled.h2`
   font-size: ${p => p.theme.fontsSizes[3]}px;
 `;
 
-export const WrapperForm = styled.div`
-  /*    border: 1px solid black; 
-  padding: 32px;
-  width: 300px; */
-`;
+export const WrapperForm = styled.div``;
 
 export const Input = styled(Field)`
   margin-bottom: 20px;
 `;
 
 export const Eror = styled(ErrorMessage)`
-  color: ${p => p.theme.colors.red};
+  color: ${p => p.theme.colors.text};
   font-size: ${p => p.theme.fontsSizes[0]}px;
   width: 180px;
 `;
