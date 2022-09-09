@@ -3,12 +3,8 @@ import ContactsList from 'components/ContactsList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { filterContact } from 'redux/contacts/contacts-slice';
 import Modal from '../../components/Modal/Modal';
-//import { HiPlus } from 'react-icons/hi';
-//import TodoEditor from '../components/TodoEditor';
-//import Filter from '../components/TodoFilter';
-//import Stats from '../components/Stats';
-//import IconButton from '../components/IconButton';
 import {
   contactsOperations,
   contactsSelectors,
@@ -22,6 +18,7 @@ const barStyles = {
 };
 
 export default function Contacts() {
+  const { items, filter } = useSelector(contactsSelectors.getContactsAll);
   const dispatch = useDispatch();
   const isLoadingContacts = useSelector(contactsSelectors.getLoading);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,19 +28,25 @@ export default function Contacts() {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
+  const onfilterContact = e => dispatch(filterContact(e.target.value));
+  const getVisibleContacts = () => {
+    const normalized = filter.toLowerCase().trim();
+    return items.filter(item => item.name.toLowerCase().includes(normalized));
+  };
+
   return (
     <>
       <div style={barStyles}>{isLoadingContacts && <h1>Loading...</h1>}</div>
       <Wraper>
-        <Filter />
+        <Filter Value={filter} onChangeFilter={onfilterContact} />
         <BtnAddContact onClick={toggleModal} aria-label="New contact">
           Add contact
         </BtnAddContact>
       </Wraper>
-      <ContactsList />
+      <ContactsList items={getVisibleContacts()} />
       {isModalOpen && (
         <Modal onClose={toggleModal}>
-          <ContactsForm onSave={toggleModal} />
+          <ContactsForm onSave={toggleModal} items={getVisibleContacts()} />
         </Modal>
       )}
     </>

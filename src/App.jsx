@@ -2,17 +2,17 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useAuth } from 'components/hooks';
+import { useAuth } from 'hooks';
 import { authOperations } from 'redux/auth';
-import PublicRoute from 'components/Route/PublicRoute';
-import PrivateRoute from 'components/Route/PrivateRoute';
+import PublicRoute from 'hooks/Route/PublicRoute';
+import PrivateRoute from 'hooks/Route/PrivateRoute';
 
 const Layout = lazy(() => import('./layout/Layout'));
-const Home = lazy(() => import('./dscsdvs/Home/Home'));
-const Contacts = lazy(() => import('./dscsdvs/Contacts/Contacts'));
-const Register = lazy(() => import('./components/Register/Register'));
-const Login = lazy(() => import('./components/Login/Login'));
-const PageNotFound = lazy(() => import('./dscsdvs/PageNotFound/PageNotFound'));
+const Home = lazy(() => import('./pages/Home'));
+const Contacts = lazy(() => import('./pages/Contacts/Contacts'));
+const Register = lazy(() => import('./pages/Register/Register'));
+const Login = lazy(() => import('./pages/Login/Login'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound/PageNotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   ButtonSubmit,
   TitleBlock,
@@ -10,17 +10,17 @@ import {
   NameForm,
   FormFormik,
 } from './ContactsForm.styled';
-import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import { toast } from 'react-toastify';
+import { contactsOperations } from 'redux/contacts';
 
-export const ContactsForm = ({ onSave }) => {
-  const contactsList = useSelector(contactsSelectors.getVisibleContacts);
+export const ContactsForm = ({ onSave, items }) => {
   const dispatch = useDispatch();
   const hendleSubmit = (values, { resetForm }) => {
-    if (contactsList.some(contact => contact.name === values.name)) {
-      toast(`${values.name} is already in contacts`);
+    if (items.some(contact => contact.name === values.name)) {
+      toast.error(`${values.name} is already in contacts`);
     } else {
       dispatch(contactsOperations.addContact(values));
+      toast.success(`${values.name} add in contacts`);
       onSave();
       return;
     }

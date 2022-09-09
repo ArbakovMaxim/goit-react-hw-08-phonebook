@@ -1,4 +1,4 @@
-import { useAuth } from '../hooks/index';
+import { useAuth } from '../index';
 import { Navigate } from 'react-router-dom';
 
 /**

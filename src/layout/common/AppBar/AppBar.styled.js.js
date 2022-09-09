@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import heder from '../../images/headerWorld.png';
+import heder from '../../../images/headerWorld.png';
 
 export const Header = styled.header`
   display: flex;

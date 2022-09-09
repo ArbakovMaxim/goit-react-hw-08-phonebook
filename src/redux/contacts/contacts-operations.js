@@ -1,58 +1,42 @@
-import axios from 'axios';
 import { toast } from 'react-toastify';
-import {
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-  fetchContactsRequest,
-  fetchContactsSuccess,
-  fetchContactsError,
-} from './contacts-actions';
+import * as api from 'api/contacts';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const fetchContacts = () => async dispatch => {
-  dispatch(fetchContactsRequest());
-  try {
-    const { data } = await axios.get('/contacts');
-    dispatch(fetchContactsSuccess(data));
-  } catch (error) {
-    dispatch(fetchContactsError(error.message));
-  }
-};
+const fetchContacts = createAsyncThunk(
+  'contacts/fetch',
+  async (_, thunkAPI) => {
+    try {
+      const result = await api.getContacts();
 
-const addContact = contact => async dispatch => {
-  dispatch(addContactRequest());
-  try {
-    const { data } = await axios.post('/contacts', contact);
-    dispatch(addContactSuccess(data));
-    toast.success(`${contact.name} added to contact`);
-  } catch (error) {
-    dispatch(addContactError(error.message));
-    toast.error(`${error.message} added to contact`);
+      return result;
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
-};
+);
+
+const addContact = createAsyncThunk('contacts/add', async data => {
+  try {
+    const result = await api.addContact(data);
+    return result;
+  } catch (error) {
+    toast.error(error.message);
+  }
+});
 
 // DELETE @ /tasks/:id
-const deleteContact = contactId => dispatch => {
-  dispatch(deleteContactRequest());
-  //   try {
-  //     const { data } = await axios.delete(`/contacts/${contactId}`);
-  //     dispatch(deleteContactSuccess(data));
-  //   } catch (error) {
-  //     dispatch(deleteContactError(error.message));
-  //   }
-  // };
-  axios
-    .delete(`/contacts/${contactId}`)
-    .then(() => dispatch(deleteContactSuccess(contactId)))
-    .catch(error => dispatch(deleteContactError(error.message)));
-};
+const deleteContact = createAsyncThunk('contacts/remove', async id => {
+  try {
+    await api.removeContact(id);
+    return id;
+  } catch (error) {
+    toast.error(error.message);
+  }
+});
 
-const todosOperations = {
+const contactsOperations = {
   fetchContacts,
   addContact,
   deleteContact,
 };
-export default todosOperations;
+export default contactsOperations;

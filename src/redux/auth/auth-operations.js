@@ -1,64 +1,54 @@
-import axios from 'axios';
+import * as api from '../../api/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = ``;
-  },
-};
-
-const register = createAsyncThunk('auth/register', async credentials => {
+const register = createAsyncThunk('auth/signup', async data => {
   try {
-    const { data } = await axios.post('/users/signup', credentials);
-    token.set(data.token);
-    return data;
+    const result = await api.signup(data);
+    return result;
   } catch (error) {
-    toast(`${error.message} try again`);
+    toast.error(`Sorry, Register failed. Try again.`);
   }
 });
 
-const logIn = createAsyncThunk('auth/login', async credentials => {
+const logIn = createAsyncThunk('auth/login', async data => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
-    return data;
+    const result = await api.login(data);
+    return result;
   } catch (error) {
-    toast(`Invalid password or login`);
+    toast.error(`Sorry, login failed. Check email and password. Try again.`);
   }
 });
 
-const logOut = createAsyncThunk('auth/logout', async () => {
+const logOut = createAsyncThunk('auth/logout', async data => {
   try {
-    await axios.post('/users/logout');
-    token.unset();
+    const result = await api.logout(data);
+    return result;
   } catch (error) {
-    toast(`${error.message} try again`);
+    toast.error(`Sorry, logout failed. Try again.`);
   }
 });
 
 const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
+  'auth/getCurrentUser',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue();
-    }
-
-    token.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
-      return data;
+      const { auth } = thunkAPI.getState();
+      const result = await api.getCurrentUser(auth.token);
+
+      return result;
     } catch (error) {
-      toast(`${error.message} try again`);
+      return thunkAPI.rejectWithValue(
+        error,
+        toast.error('Sorry, your token is dead or time is out ')
+      );
     }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const { auth } = thunkAPI.getState();
+      if (!auth.token) return false;
+    },
   }
 );
 

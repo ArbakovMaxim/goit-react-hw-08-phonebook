@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { GlobalStyle } from '../style/GlobalStyle';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AppBar } from './AppBar/AppBar';
+import { AppBar } from './common/AppBar/AppBar';
 import { Container } from 'components/ui/Container.styled';
 
 const Layout = () => {

@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import { useAuth } from '../../components/hooks/index';
+import { useAuth } from '../../../hooks/index';
 import avatar from './avatar.png';
-import logOut from '../../images/logOut.png';
+import logOut from '../../../images/logOut.png';
 import { BtnLogOut, Img, WraperUserMenu } from './UserMenu.styled';
 
 export const UserMenu = () => {

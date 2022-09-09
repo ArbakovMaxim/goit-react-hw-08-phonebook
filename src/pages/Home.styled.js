@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import homeImg from '../../images/HomePage.jpg';
+import homeImg from '../images/HomePage.jpg';
 import { NavLink } from 'react-router-dom';
 
 export const Wraper = styled.div`
