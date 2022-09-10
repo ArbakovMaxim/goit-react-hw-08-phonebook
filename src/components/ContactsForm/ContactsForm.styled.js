@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Field, ErrorMessage } from 'formik';
-import { Form } from 'formik';
+import { ErrorMessage } from 'formik';
+import PhoneInput from 'react-phone-input-2';
 
 export const ButtonSubmit = styled.button`
   display: block;
@@ -26,7 +26,7 @@ export const WrapperForm = styled.div`
   height: 460px;
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   margin-bottom: 20px;
   margin-left: 2em;
 `;
@@ -45,7 +45,7 @@ export const NameForm = styled.h2`
   color: #414141;
 `;
 
-export const FormFormik = styled(Form)`
+export const FormFormik = styled.form`
   width: 500px;
   height: 100%;
   position: relative;
@@ -79,4 +79,9 @@ export const FormFormik = styled(Form)`
     #bc3220 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bc3220', endColorstr='#bc3220', GradientType=1 );
+`;
+
+export const Phone = styled(PhoneInput)`
+  margin-bottom: 20px;
+  margin-left: 2em;
 `;
