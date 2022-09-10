@@ -30,7 +30,7 @@ export const ContactsList = ({ items }) => {
             return (
               <ContItem key={contacts.id}>
                 <Name>{contacts.name}:</Name>
-                <Number>{contacts.number}</Number>
+                <Number>+{contacts.number}</Number>
                 <BtnDeleteContact
                   type="button"
                   onClick={() => {
