@@ -18,17 +18,19 @@ const fetchContacts = createAsyncThunk(
 const addContact = createAsyncThunk('contacts/add', async data => {
   try {
     const result = await api.addContact(data);
-    return result;
+    toast.success(`${result.name} add contacts`);
+    return await api.getContacts();
   } catch (error) {
     toast.error(error.message);
   }
 });
 
 // DELETE @ /tasks/:id
-const deleteContact = createAsyncThunk('contacts/remove', async id => {
+const deleteContact = createAsyncThunk('contacts/remove', async useInfo => {
   try {
-    await api.removeContact(id);
-    return id;
+    await api.removeContact(useInfo.id);
+    toast.success(`${useInfo.name} delete`);
+    return await api.getContacts();
   } catch (error) {
     toast.error(error.message);
   }

@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { contactsOperations } from 'redux/contacts';
 
 import {
@@ -16,8 +15,11 @@ export const ContactsList = ({ items }) => {
   const dispatch = useDispatch();
 
   const onDeleteContact = (id, name) => {
-    dispatch(contactsOperations.deleteContact(id));
-    toast.success(`${name} delete`);
+    const useInfo = {
+      id,
+      name,
+    };
+    dispatch(contactsOperations.deleteContact(useInfo));
   };
 
   return (

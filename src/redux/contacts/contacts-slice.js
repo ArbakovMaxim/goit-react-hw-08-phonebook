@@ -22,11 +22,11 @@ const contactsSlice = createSlice({
       state.loading = false;
     },
     [contactsOperations.addContact.fulfilled]: (state, { payload }) => {
-      state.items.push(payload);
+      state.items = payload;
       state.loading = false;
     },
     [contactsOperations.deleteContact.fulfilled]: (state, { payload }) => {
-      state.items = state.items.filter(items => items.id !== payload);
+      state.items = payload;
       state.loading = false;
     },
   },
