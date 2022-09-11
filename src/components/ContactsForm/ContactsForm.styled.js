@@ -45,7 +45,7 @@ export const NameForm = styled.h2`
   color: #414141;
 `;
 
-export const FormFormik = styled.form`
+export const Form = styled.form`
   width: 500px;
   height: 100%;
   position: relative;

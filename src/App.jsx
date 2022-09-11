@@ -25,7 +25,7 @@ export const App = () => {
   return isRefreshing ? (
     <h1>Refreshing user...</h1>
   ) : (
-    <Suspense fallback={null}>
+    <Suspense fallback={<h1>Loading profile.</h1>}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<PublicRoute component={<Home />} />} />
